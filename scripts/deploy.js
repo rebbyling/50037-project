@@ -6,7 +6,9 @@ const main = async () => {
     console.log("Account balance: ", accountBalance.toString());
   
     const Token = await hre.ethers.getContractFactory("CoffeePortal");
-    const portal = await Token.deploy();
+    const portal = await Token.deploy({
+      value: hre.ethers.utils.parseEther("0.1"),
+    });
     await portal.deployed();
   
     console.log("CoffeePortal address: ", portal.address);
@@ -23,4 +25,3 @@ const main = async () => {
   };
   
   runMain();
-  

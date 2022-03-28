@@ -1,4 +1,5 @@
 const main = async () => {
+    // JavaScript: web3.js
     const [deployer] = await hre.ethers.getSigners();
     const accountBalance = await deployer.getBalance();
   

@@ -1,8 +1,16 @@
 [
     {
         "title": "Salvation Army",
-        "id": "sticker_logo",
-        "description": "Salvation Army is a local charity",
-        "price": "2.00"
+        "id": "salvation_army",
+        "description": "The Salvation Army is a Protestant church and an international charitable organisation headquartered in London, England. The organisation reports a worldwide membership of over 1.7 million, comprising soldiers, officers and adherents collectively known as Salvationists.",
+        "price": "2.00",
+        "img": "https://images.unsplash.com/photo-1647604321510-714be1503bd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1065&q=80"
+      },
+      {
+        "title": "Red Cross Foundation",
+        "id": "red_cross",
+        "description": "Red Cross is a local charity",
+        "price": "2.00",
+        "img": "https://images.unsplash.com/photo-1647613479342-e1ac78314824?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
       }
 ]

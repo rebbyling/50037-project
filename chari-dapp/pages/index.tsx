@@ -12,7 +12,7 @@ export default function Home() {
   /**
    * Create a variable here that holds the contract address after you deploy!
    */
-  const contractAddress = "0xfC32dD65B0Db176d9555B9D961F1d7C54391694D";
+  const contractAddress = "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee";
 
   /**
    * Create a variable here that references the abi content!

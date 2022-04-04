@@ -184,54 +184,54 @@ export default function Home() {
   /*
    * Create a method that gets all coffee from your contract
    */
-  const getAllCoffee = async () => {
-    try {
-      const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const coffeePortalContract = new ethers.Contract(
-          contractAddress,
-          contractABI,
-          signer
-        );
+//   const getAllCoffee = async () => {
+//     try {
+//       const { ethereum } = window;
+//       if (ethereum) {
+//         const provider = new ethers.providers.Web3Provider(ethereum);
+//         const signer = provider.getSigner();
+//         const coffeePortalContract = new ethers.Contract(
+//           contractAddress,
+//           contractABI,
+//           signer
+//         );
 
-        /*
-         * Call the getAllCoffee method from your Smart Contract
-         */
-        const coffees = await coffeePortalContract.getAllCoffee();
+//         /*
+//          * Call the getAllCoffee method from your Smart Contract
+//          */
+//         const coffees = await coffeePortalContract.getAllCoffee();
 
-        /*
-         * We only need address, timestamp, name, and message in our UI so let's
-         * pick those out
-         */
-        const coffeeCleaned = coffees.map((coffee) => {
-          return {
-            address: coffee.giver,
-            timestamp: new Date(coffee.timestamp * 1000),
-            message: coffee.message,
-            name: coffee.name,
-          };
-        });
+//         /*
+//          * We only need address, timestamp, name, and message in our UI so let's
+//          * pick those out
+//          */
+//         const coffeeCleaned = coffees.map((coffee) => {
+//           return {
+//             address: coffee.giver,
+//             timestamp: new Date(coffee.timestamp * 1000),
+//             message: coffee.message,
+//             name: coffee.name,
+//           };
+//         });
 
-        /*
-         * Store our data in React State
-         */
-        setAllCoffee(coffeeCleaned);
-      } else {
-        console.log("Ethereum object doesn't exist!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+//         /*
+//          * Store our data in React State
+//          */
+//         setAllCoffee(coffeeCleaned);
+//       } else {
+//         console.log("Ethereum object doesn't exist!");
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
 
   /*
    * This runs our function when the page loads.
    */
   useEffect(() => {
     let coffeePortalContract;
-    getAllCoffee();
+    // getAllCoffee();
     checkIfWalletIsConnected();
 
     const onNewCoffee = (from, timestamp, message, name) => {
@@ -278,16 +278,16 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Mini Buy Me a Coffee</title>
+        <title>Chari-Dapp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold text-blue-600 mb-6">
-          Buy Me A Coffee
+          Choose a charity:
         </h1>
-        <Link href="/dashboard">
-          <h2>Go to dashboard</h2>
+        <Link href="/">
+          <h2>go to index</h2>
         </Link>
         {/*
          * If there is currentAccount render this form, else render a button to connect wallet

@@ -21,8 +21,8 @@ module.exports = {
   solidity: "0.8.4",
   networks: {
     ropsten: {
-      url: "https://eth-ropsten.alchemyapi.io/v2/qEDazXA0knMeNr_E07CLslNEL7gmLoF9",
-      accounts: ["342b8ed40ad5646f5bc43b427f6403b1bacf641e9dbd83b8eaf0dcd332352720"],
+      url: process.env.PUBLIC_KEY,
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
 };

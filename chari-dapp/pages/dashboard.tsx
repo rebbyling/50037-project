@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { ethers } from "ethers";
 import "react-toastify/dist/ReactToastify.css";
-
+import charities from '../charities.json';
 import Head from "next/head";
 import Link from 'next/link';
+// import styles from "../assets/jss/material-kit-react/views/landingPageSections/productStyle.js";
 // Import abi
 import abi from "../utils/CoffeePortal.json";
 
@@ -276,13 +277,13 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col min-h-screen py-2">
       <Head>
         <title>Chari-Dapp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 ">
         <h1 className="text-6xl font-bold text-blue-600 mb-6">
           Choose a charity:
         </h1>
@@ -292,6 +293,37 @@ export default function Home() {
         {/*
          * If there is currentAccount render this form, else render a button to connect wallet
          */}
+        <div className="p-10">
+    <div className=" w-full lg:max-w-full lg:flex">
+      <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" title="Mountain">
+      </div>
+      <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+        <div className="mb-8">
+          {/* <p className="text-sm text-gray-600 flex items-center">
+            <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+            </svg>
+            Members only
+          </p> */}
+          {charities.map(product => {
+            return (
+            <div key={product.id}>
+                
+                <h3 className="text-lg">{ product.title }</h3>
+                <p>{ product.description }</p>
+                <p>${ product.price }</p>
+                <p>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Add to Cart</button>
+                </p>
+            </div>
+            );
+        })}
+          
+         
+        </div>
+      </div>
+    </div>
+  </div>
 
         {currentAccount ? (
           <div className="w-full max-w-xs sticky top-3 z-50 ">

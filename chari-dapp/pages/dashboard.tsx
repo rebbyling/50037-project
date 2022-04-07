@@ -328,7 +328,7 @@ export default function Home() {
            </div>
          
                
-
+{/* 
         {currentAccount ? (
           <div className="w-full max-w-xs sticky top-3 z-50 ">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -386,7 +386,7 @@ export default function Home() {
             Connect Your Wallet
           </button>
 
-)}
+)} */}
 
 {allCoffee.map((coffee, index) => {
   return (

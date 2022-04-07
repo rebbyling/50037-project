@@ -289,9 +289,9 @@ export default function Home() {
         <h1 className="text-6xl font-bold text-blue-600 mb-6">
           Choose a charity:
         </h1>
-        <Link href="/">
+        {/* <Link href="/">
           <h2>go to index</h2>
-        </Link>
+        </Link> */}
            <div className="p-10">
         {charities.map(product => {
                     return (
@@ -307,7 +307,8 @@ export default function Home() {
                         <p>${ product.price }</p>
                         
                         <p>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Add to Cart</button>
+                        <Link to={'charity'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3"
+                        >Proceed to Donate</Link>
                         </p>
                     </div>
                     </div>

@@ -307,8 +307,10 @@ export default function Home() {
                         <p>${ product.price }</p>
                         
                         <p>
-                        <Link to={'charity'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3"
-                        >Proceed to Donate</Link>
+                        <Link href="/charity">
+                        <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Proceed to Donate</a>
+                        
+                        </Link>
                         </p>
                     </div>
                     </div>

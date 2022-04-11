@@ -52,26 +52,26 @@ contract CustomCharityTest{
     OnchainPayment[] onchainPayment; // Stores all the donations in an unindexed list, just in-order
 
     function MakeOnchainPayment (string memory _message) public payable {
+        // checks
         uint256 cost = 0.001 ether; // minimum amount to make sure gas doesn't eat the whole thing
         require(msg.value >= cost, "Value too low to send!");
 
+        // effects
         console.log("Making onchain transfer...");
-    
-        require(msg.sender.balance >= msg.value, "You don't have enough ether for this!");
-        (bool success, ) = charityaddress.call{value: msg.value}("");
-        require(success, "Failed to send money");
 
-        // only update the list after the transfer is complete
         donationcount += 1;
         onchainPayment.push(OnchainPayment(msg.sender, _message, block.timestamp));
         emit NewOnchainPayment(msg.sender, _message, block.timestamp);
-
-        // update other useful stuff
         uint size = donationCounts[msg.sender];
         if (size == 0){
             donors.push(msg.sender);
         }
         donationCounts[msg.sender] = size + 1;
+
+        // interacts - re-ordered to prevent re-entrance attacks
+        require(msg.sender.balance >= msg.value, "You don't have enough ether for this!");
+        (bool success, ) = charityaddress.call{value: msg.value}("");
+        require(success, "Failed to send money");
     }
 
     // Helper functions

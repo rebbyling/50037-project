@@ -37,7 +37,7 @@ export function getCharities() {
  * Retrieves a specific UEN
  * @param uen is the uen to search for.
  */
-/**export function searchByUEN(uen) {
+export function searchByUEN(uen) {
   var charity = [];
   firestore
     .collection("charities")
@@ -50,7 +50,7 @@ export function getCharities() {
     });
   return charity;
 }
-*/
+
 
 /**
  * Get donations based on donationHash
@@ -70,7 +70,7 @@ export async function getDonations() {
  * @param {*} message
  * @param {*} transactionHash transaction hash of mined transaction
  */
-export function addDonation(nricHash, amount, date, message, transactionHash) {
+export function addDonation(nricHash, amount, date, message) {
   console.log({ amount: amount, date: date });
   const donationHash = Web3.utils.sha3(
     nricHash.toString() +
@@ -83,7 +83,6 @@ export function addDonation(nricHash, amount, date, message, transactionHash) {
     amount: amount,
     date: date,
     message: message,
-    transactionHash: transactionHash,
   };
   console.log(donationDetails);
 

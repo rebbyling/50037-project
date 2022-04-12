@@ -292,7 +292,7 @@ export default function Home() {
          */}
 
         {currentAccount ? (
-          <><p>You have already connected your wallet! Proceed to the dashboard to see charities u can donate to.</p>
+          <><p>Your wallet has been connected! Please proceed to the dashboard to see the list of charities you can donate to.</p>
           <Link href="/dashboard">
             <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Go to dashboard</a>
           </Link></>

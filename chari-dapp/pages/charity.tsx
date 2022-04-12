@@ -287,7 +287,7 @@ export default function Home() {
           Buy Me A Coffee
         </h1>
         <Link href="/dashboard">
-          <h2>Go to dashboard</h2>
+          <a className="bg-slate-400 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Back to dashboard</a>
         </Link>
         {/*
          * If there is currentAccount render this form, else render a button to connect wallet

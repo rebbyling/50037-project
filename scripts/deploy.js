@@ -7,12 +7,13 @@ const main = async () => {
     console.log("Account balance: ", accountBalance.toString());
   
     const Token = await hre.ethers.getContractFactory("CoffeePortal");
-    const portal = await Token.deploy({
-      value: hre.ethers.utils.parseEther("0.1"),
-    });
+    const portal = await Token.deploy(
+		"0xADC29Ad6D646c0c7CA7BF7aDf2EEE095ef99d1F8", 
+		);
     await portal.deployed();
   
-    console.log("CoffeePortal address: ", portal.address);
+    console.log("Onboarding address: ", portal.address);
+
   };
   
   const runMain = async () => {

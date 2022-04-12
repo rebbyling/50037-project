@@ -1,6 +1,6 @@
 const main = async () => {
     const coffeeContractFactory = await hre.ethers.getContractFactory(
-      "CoffeePortal"
+      "CustomCharityTest"
     );
     const coffeeContract = await coffeeContractFactory.deploy({
       value: hre.ethers.utils.parseEther("0.1"),

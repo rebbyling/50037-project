@@ -6,10 +6,13 @@ const main = async () => {
     console.log("Deploying contracts with account: ", deployer.address);
     console.log("Account balance: ", accountBalance.toString());
   
-    const Token = await hre.ethers.getContractFactory("CoffeePortal");
-    const portal = await Token.deploy({
-      value: hre.ethers.utils.parseEther("0.1"),
-    });
+    const Token = await hre.ethers.getContractFactory("CustomCharityTest");
+    const portal = await Token.deploy(
+        "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee",
+        "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee",
+        "name",
+        "charity"
+    );
     await portal.deployed();
   
     console.log("CoffeePortal address: ", portal.address);

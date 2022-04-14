@@ -286,8 +286,8 @@ export default function Home() {
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 ">
-        <h1 className="text-6xl font-bold text-blue-600 mb-6">
-          Choose a charity:
+        <h1 className="text-xxl font-bold text-indigo-600 mb-6">
+          Choose a Charity:
         </h1>
         {/* <Link href="/">
           <h2>go to index</h2>
@@ -302,13 +302,13 @@ export default function Home() {
             </div>
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4 flex flex-col justify-between leading-normal">
             <img src={product.img} className="object-cover h-48 w-full content-center" alt="" />
-                        <h3 className="text-lg">{ product.title }</h3>
-                        <p>{ product.description }</p>
-                        <p>${ product.price }</p>
+                        <h3 className="text-xl font-serif text-indigo-800 mt-2">{ product.title }</h3>
+                        <p className="text-md font-serif mb-5 text-slate-500">{ product.description }</p>
+                        {/* <p className="text-lg font-serif">${ product.price }</p> */}
                         
                         <p>
                         <Link href="/charity">
-                        <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Proceed to Donate</a>
+                        <a className="text-lg bg-indigo-500 hover:bg-blue-700 text-white px-5 py-3 rounded-full">Proceed to Donate</a>
                         
                         </Link>
                         </p>

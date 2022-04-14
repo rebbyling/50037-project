@@ -283,11 +283,11 @@ export default function Home() {
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold text-blue-600 mb-6">
+        <h1 className="text-xxl font-bold text-indigo-600 mb-6">
           Buy Me A Coffee
         </h1>
         <Link href="/dashboard">
-          <a className="bg-slate-400 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Back to dashboard</a>
+          <a className="bg-slate-400 hover:bg-indigo-700 text-white py-2 px-3 rounded-full mt-3">Back to dashboard</a>
         </Link>
         {/*
          * If there is currentAccount render this form, else render a button to connect wallet
@@ -298,7 +298,7 @@ export default function Home() {
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-indigo-700 text-md font-bold mb-2"
                   htmlFor="name"
                 >
                   Name
@@ -315,7 +315,7 @@ export default function Home() {
 
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-indigo-700 text-md font-bold mb-2"
                   htmlFor="message"
                 >
                   Send the Creator a Message
@@ -333,18 +333,18 @@ export default function Home() {
 
               <div className="flex items-left justify-between">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="bg-indigo-500 hover:bg-indigo-700 text-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button"
                   onClick={buyCoffee}
                 >
-                  Support $5
+                  Support Now!
                 </button>
               </div>
             </form>
           </div>
         ) : (
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3"
+            className="bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-2 px-3 rounded-full mt-3"
             onClick={connectWallet}
           >
             Connect Your Wallet
@@ -355,12 +355,12 @@ export default function Home() {
 {allCoffee.map((coffee, index) => {
   return (
     <div className="border-l-2 mt-10" key={index}>
-      <div className="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 bg-blue-800 text-white rounded mb-10 flex-col md:flex-row space-y-4 md:space-y-0">
+      <div className="transform transition cursor-pointer hover:-translate-y-2 ml-10 relative flex items-center px-6 py-4 bg-indigo-300 text-indigo-900 rounded mb-10 flex-col md:flex-row space-y-4 md:space-y-0">
         {/* <!-- Dot Following the Left Vertical Line --> */}
-        <div className="w-5 h-5 bg-blue-600 absolute -left-10 transform -translate-x-2/4 rounded-full z-10 mt-2 md:mt-0"></div>
+        <div className="w-5 h-5 bg-indigo-600 absolute -left-10 transform -translate-x-2/4 rounded-full z-10 mt-2 md:mt-0"></div>
 
         {/* <!-- Line that connecting the box with the vertical line --> */}
-        <div className="w-10 h-1 bg-green-300 absolute -left-10 z-0"></div>
+        <div className="w-10 h-1 bg-yellow-300 absolute -left-10 z-0"></div>
 
         {/* <!-- Content that showing in the box --> */}
         <div className="flex-auto">

@@ -278,13 +278,13 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Mini Buy Me a Coffee</title>
+        <title>Chari-DApp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold text-blue-600 mb-6">
-          Buy Me A Coffee
+        <h1 className="text-xxl font-bold text-indigo-600 mb-6">
+          Chari-DApp
         </h1>
         
         {/*
@@ -292,13 +292,13 @@ export default function Home() {
          */}
 
         {currentAccount ? (
-          <><p>You have already connected your wallet! Proceed to the dashboard to see charities u can donate to.</p>
+          <><p className="text-lg text-slate-800 mb-8">You have already connected your wallet! 👏🏼 </p>
           <Link href="/dashboard">
-            <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Go to dashboard</a>
+            <a className="bg-indigo-500 text-lg hover:bg-indigo-700 text-white py-2 px-4 rounded-full mt-3">Browse Charities</a>
           </Link></>
         ) : (
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3"
+            className="bg-indigo-500 hover:bg-indigo-700 text-white text-lg py-2 px-4 rounded-full mt-3"
             onClick={connectWallet}
           >
             Connect Your Wallet

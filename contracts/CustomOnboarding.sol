@@ -18,7 +18,7 @@ contract CustomOnboarding{
 
     mapping (string => Charity) private charities; // map UEN to charity address
 
-    constructor(address _admin) {
+    constructor(address _admin) public {
         admin = _admin;
     }
   
@@ -51,6 +51,7 @@ contract CustomOnboarding{
         charities[UEN].cAddress = newAddress;
     }
 
+    
     function getCharityAddress(string memory UEN) public view returns (address){
         return charities[UEN].cAddress;
     }

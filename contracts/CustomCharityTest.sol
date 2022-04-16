@@ -119,6 +119,7 @@ contract CustomCharityTest{
       owners[owner] = false;
     }
 
+    //only admin updates charity address
     function updateAddress(address payable _oldaddress, address payable _newaddress) public isAdmin {
         require(charityaddress == _oldaddress, "Addresses do not match!");
         owners[_oldaddress] = false;
@@ -126,6 +127,7 @@ contract CustomCharityTest{
         charityaddress = _newaddress;
     }
 
+    //only owner updates charity name
     function updateName(string memory _newname) public isOwners returns(string memory) {
         charityname = _newname;
         return charityname;

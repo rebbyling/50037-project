@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { ethers } from "ethers";
 import "react-toastify/dist/ReactToastify.css";
-import charities from '../charities.json';
-import { Card } from '@material-ui/core';
 
 import Head from "next/head";
 import Link from 'next/link';
-// import styles from "../assets/jss/material-kit-react/views/landingPageSections/productStyle.js";
 // Import abi
-import abi from "../utils/CoffeePortal.json";
+import abi from "../../utils/CoffeePortal.json";
 
 export default function Home() {
   /**
@@ -30,8 +27,6 @@ export default function Home() {
   const [message, setMessage] = useState("");
 
   const [name, setName] = useState("");
-
-  const ROUTE_CHARITY_ID = "charities/[id]"
 
   /*
    * All state property to store all coffee
@@ -189,54 +184,54 @@ export default function Home() {
   /*
    * Create a method that gets all coffee from your contract
    */
-//   const getAllCoffee = async () => {
-//     try {
-//       const { ethereum } = window;
-//       if (ethereum) {
-//         const provider = new ethers.providers.Web3Provider(ethereum);
-//         const signer = provider.getSigner();
-//         const coffeePortalContract = new ethers.Contract(
-//           contractAddress,
-//           contractABI,
-//           signer
-//         );
+  const getAllCoffee = async () => {
+    try {
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const coffeePortalContract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
 
-//         /*
-//          * Call the getAllCoffee method from your Smart Contract
-//          */
-//         const coffees = await coffeePortalContract.getAllCoffee();
+        /*
+         * Call the getAllCoffee method from your Smart Contract
+         */
+        const coffees = await coffeePortalContract.getAllCoffee();
 
-//         /*
-//          * We only need address, timestamp, name, and message in our UI so let's
-//          * pick those out
-//          */
-//         const coffeeCleaned = coffees.map((coffee) => {
-//           return {
-//             address: coffee.giver,
-//             timestamp: new Date(coffee.timestamp * 1000),
-//             message: coffee.message,
-//             name: coffee.name,
-//           };
-//         });
+        /*
+         * We only need address, timestamp, name, and message in our UI so let's
+         * pick those out
+         */
+        const coffeeCleaned = coffees.map((coffee) => {
+          return {
+            address: coffee.giver,
+            timestamp: new Date(coffee.timestamp * 1000),
+            message: coffee.message,
+            name: coffee.name,
+          };
+        });
 
-//         /*
-//          * Store our data in React State
-//          */
-//         setAllCoffee(coffeeCleaned);
-//       } else {
-//         console.log("Ethereum object doesn't exist!");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+        /*
+         * Store our data in React State
+         */
+        setAllCoffee(coffeeCleaned);
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   /*
    * This runs our function when the page loads.
    */
   useEffect(() => {
     let coffeePortalContract;
-    // getAllCoffee();
+    getAllCoffee();
     checkIfWalletIsConnected();
 
     const onNewCoffee = (from, timestamp, message, name) => {
@@ -281,62 +276,23 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Chari-Dapp</title>
+        <title>Mini Buy Me a Coffee</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 ">
-        <h1 className="text-xxl font-bold text-indigo-600 mb-6">
-          Choose a Charity:
+      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+        <h1 className="text-6xl font-bold text-blue-600 mb-6">
+          Buy Me A Coffee
         </h1>
-        {/* <Link href="/">
-          <h2>go to index</h2>
-        </Link> */}
-           <div className="p-10">
-        {charities.map(product => {
-                    return (
-                    <div key={`product-${product.id}`}>
+        <Link href="/dashboard">
+          <a className="bg-slate-400 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-full mt-3">Back to dashboard</a>
+        </Link>
+        {/*
+         * If there is currentAccount render this form, else render a button to connect wallet
+         */}
 
-            <div className="flex-initial w-full">
-          <div className="">
-            </div>
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4 flex flex-col justify-between leading-normal">
-            <img src={product.img} className="object-cover h-48 w-full content-center" alt="" />
-                        <h3 className="text-xl font-serif text-indigo-800 mt-2">{ product.title }</h3>
-                        <p className="text-md font-serif mb-5 text-slate-500">{ product.description }</p>
-                        {/* <p className="text-lg font-serif">${ product.price }</p> */}
-                        
-                        <p>
-                        <Link href={{
-                          pathname: ROUTE_CHARITY_ID,
-                          query: {id: product.id}
-                        }}>
-                        <a className="text-lg bg-indigo-500 hover:bg-blue-700 text-white px-5 py-3 rounded-full">Proceed to Donate</a>
-                        
-                        </Link>
-                        </p>
-                    </div>
-                    </div>
-            </div>
-            
-       
- 
-                    );
-                })}</div>
-                <div className="mb-8">
-                {/* <p className="text-sm text-gray-600 flex items-center">
-                    <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                    </svg>
-                    Members only
-                </p> */}
-                
-           </div>
-         
-               
-{/* 
         {currentAccount ? (
           <div className="w-full max-w-xs sticky top-3 z-50 ">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -375,7 +331,7 @@ export default function Home() {
                 ></textarea>
               </div>
 
-              <div className="flex items-left justify-between">
+              <div className="flex items-left justify-between align-center">
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="button"
@@ -394,7 +350,7 @@ export default function Home() {
             Connect Your Wallet
           </button>
 
-)} */}
+)}
 
 {allCoffee.map((coffee, index) => {
   return (

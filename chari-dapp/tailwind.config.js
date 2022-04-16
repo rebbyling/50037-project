@@ -5,7 +5,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'sans': ['poppins']
+      'sans': ['Century Gothic']
     },
     fontSize: {
       sm: ['14px', '20px'],

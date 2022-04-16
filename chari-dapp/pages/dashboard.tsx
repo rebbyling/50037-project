@@ -295,36 +295,37 @@ export default function Home() {
           <h2>go to index</h2>
         </Link> */}
            <div className="p-10">
-        {charities.map(product => {
-                    return (
-                    <div key={`product-${product.id}`}>
+            {charities.map(product => {
+                        return (
+                        <div key={`product-${product.id}`}>
 
-            <div className="flex-initial w-full">
-          <div className="">
-            </div>
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4 flex flex-col justify-between leading-normal">
-            <img src={product.img} className="object-cover h-48 w-full content-center" alt="" />
-                        <h3 className="text-xl font-serif text-indigo-800 mt-2">{ product.title }</h3>
-                        <p className="text-md font-serif mb-5 text-slate-500">{ product.description }</p>
-                        {/* <p className="text-lg font-serif">${ product.price }</p> */}
-                        
-                        <p>
-                        <Link href={{
-                          pathname: ROUTE_CHARITY_ID,
-                          query: {id: product.id}
-                        }}>
-                        <a className="text-lg bg-indigo-500 hover:bg-blue-700 text-white px-5 py-3 rounded-full">Proceed to Donate</a>
-                        
-                        </Link>
-                        </p>
-                    </div>
-                    </div>
-            </div>
-            
-       
- 
-                    );
-                })}</div>
+                <div className="flex-initial w-full">
+              <div className="">
+                </div>
+                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4 flex flex-col justify-between leading-normal">
+                <img src={product.img} className="object-cover h-48 w-full content-center" alt="" />
+                            <h3 className="text-xl font-serif text-indigo-800 mt-2">{ product.title }</h3>
+                            <p className="text-md font-serif mb-5 text-slate-500">{ product.description }</p>
+                            {/* <p className="text-lg font-serif">${ product.price }</p> */}
+                            
+                            <p>
+                            <Link href={{
+                              pathname: ROUTE_CHARITY_ID,
+                              query: {id: product.id}
+                            }}>
+                            <a className="text-lg bg-indigo-500 hover:bg-blue-700 text-white px-5 py-3 rounded-full">Proceed to Donate</a>
+                            
+                            </Link>
+                            </p>
+                        </div>
+                        </div>
+                </div>
+                
+          
+    
+                        );
+                    })}
+                </div>
                 <div className="mb-8">
                 {/* <p className="text-sm text-gray-600 flex items-center">
                     <svg className="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

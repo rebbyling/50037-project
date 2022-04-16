@@ -5,15 +5,17 @@ import "react-toastify/dist/ReactToastify.css";
 import charities from '../../charities.json';
 import Head from "next/head";
 import Link from 'next/link';
+
 // Import abi
 import abi from "../../utils/CoffeePortal.json";
-import { Router } from "next/router";
+import { Router, useRouter } from "next/router";
 
 export default function Home() {
   /**
    * Create a variable here that holds the contract address after you deploy!
    */
   const contractAddress = "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee";
+  const router = useRouter();
 
   /**
    * Create a variable here that references the abi content!
@@ -182,13 +184,6 @@ export default function Home() {
     }
   };
 
-  const getStaticProps = async (charities) => {
-    const charityDetails = charities.map((charity) => {
-      return {
-        charityTitle: charity.title,
-      }
-    })
-  }
   /*
    * Create a method that gets all coffee from your contract
    */
@@ -283,6 +278,11 @@ export default function Home() {
     setName(value);
   };
 
+  const charity = charities.map((product) => {
+      return {
+        title: product.title
+      };
+  });
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -292,20 +292,9 @@ export default function Home() {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
       <h1 className="text-xxl font-bold text-indigo-600 mb-6">
-                            
+        {router.query.id}
                           </h1>
-      {charities.map(product => {
-                        return (
-                        <div key={`product-${product.id}`}>
-                          <h1 className="text-xxl font-bold text-indigo-600 mb-6">
-                            {product.title}
-                          </h1>
-                </div>
-                
-          
-    
-                        );
-                    })}
+
         
         <Link href="/dashboard">
           <a className="bg-slate-400 hover:bg-indigo-700 text-white py-2 px-3 rounded-full mt-3">Back to dashboard</a>

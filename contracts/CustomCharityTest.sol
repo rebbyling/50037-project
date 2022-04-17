@@ -36,7 +36,7 @@ contract CustomCharityTest{
     // Section for handling on-chain payments
 
     event NewOnchainPayment(
-        address indexed from, // keyword indexed lets you search by the parameter
+        address indexed from,
         string message,
         uint256 timestamp,
         uint256 amount

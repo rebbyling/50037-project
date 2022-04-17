@@ -22,7 +22,7 @@ contract CustomCharityTest{
     // More advanced donation storing method that we probably don't need
     // mapping(bytes32 => mapping(uint256 => Donation)) donations;
     
-    constructor(address _admin, address payable _charityaddress, string memory _uen, string memory _charityname) {
+    constructor(address _admin, address payable _charityaddress, string memory _uen, string memory _charityname) payable {
         // Create an instance of this contract for one charity
         admin = _admin;
         charityaddress = _charityaddress;

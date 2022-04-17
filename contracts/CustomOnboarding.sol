@@ -19,7 +19,7 @@ contract CustomOnboarding{
 
     mapping (string => Charity) private charities; // map UEN to charity STRUCT
 
-    constructor(address _admin) {
+    constructor(address _admin) payable {
         admin = _admin;
         owners[_admin] = true;
     }

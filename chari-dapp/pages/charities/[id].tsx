@@ -7,14 +7,16 @@ import Head from "next/head";
 import Link from 'next/link';
 
 // Import abi
-import abi from "../../utils/CoffeePortal.json";
+// import abi from "../../utils/CoffeePortal.json";
+import abi from "../../utils/CustomCharityTest.json";
 import { Router, useRouter } from "next/router";
 
 export default function Home() {
   /**
    * Create a variable here that holds the contract address after you deploy!
    */
-  const contractAddress = "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee";
+  // const contractAddress = "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee";
+  const contractAddress = "0x781C51B9826c2aA90EFF27e86D259ca4068cc0Ea";
   const router = useRouter();
 
   /**
@@ -123,15 +125,15 @@ export default function Home() {
           signer
         );
 
-        let count = await coffeePortalContract.getTotalCoffee();
-        console.log("Retrieved total coffee count...", count.toNumber());
+        let count = await coffeePortalContract.GetNumOnlinePayments();
+        console.log("Retrieved total donation count...", count.toNumber());
 
         /*
          * Execute the actual coffee from your smart contract
          */
-        const coffeeTxn = await coffeePortalContract.buyCoffee(
-          message ? message : "Enjoy Your Coffee",
-          name ? name : "Anonymous",
+        const coffeeTxn = await coffeePortalContract.MakeOnchainPayment(
+          message ? message : "Take my money",
+          // name ? name : "Anonymous",
           ethers.utils.parseEther("0.001"),
           {
             gasLimit: 300000,
@@ -139,7 +141,7 @@ export default function Home() {
         );
         console.log("Mining...", coffeeTxn.hash);
 
-        toast.info("Sending Fund for coffee...", {
+        toast.info("Sending Donation...", {
           position: "top-left",
           autoClose: 18050,
           hideProgressBar: false,
@@ -152,7 +154,7 @@ export default function Home() {
 
         console.log("Mined -- ", coffeeTxn.hash);
 
-        count = await coffeePortalContract.getTotalCoffee();
+        count = await coffeePortalContract.GetNumOnlinePayments();
 
         console.log("Retrieved total coffee count...", count.toNumber());
 
@@ -202,7 +204,7 @@ export default function Home() {
         /*
          * Call the getAllCoffee method from your Smart Contract
          */
-        const coffees = await coffeePortalContract.getAllCoffee();
+        const coffees = await coffeePortalContract.GetOnlinePayments();
 
         /*
          * We only need address, timestamp, name, and message in our UI so let's
@@ -210,10 +212,10 @@ export default function Home() {
          */
         const coffeeCleaned = coffees.map((coffee) => {
           return {
-            address: coffee.giver,
+            address: coffee.donor,
             timestamp: new Date(coffee.timestamp * 1000),
             message: coffee.message,
-            name: coffee.name,
+            amount: coffee.amount,
           };
         });
 
@@ -237,15 +239,15 @@ export default function Home() {
     getAllCoffee();
     checkIfWalletIsConnected();
 
-    const onNewCoffee = (from, timestamp, message, name) => {
-      console.log("NewCoffee", from, timestamp, message, name);
+    const onNewOnchainPayment = (from, timestamp, message, amount) => {
+      console.log("NewOnchainPayment", from, timestamp, message, amount);
       setAllCoffee((prevState) => [
         ...prevState,
         {
           address: from,
           timestamp: new Date(timestamp * 1000),
           message: message,
-          name: name,
+          amount: amount,
         },
       ]);
     };
@@ -259,12 +261,12 @@ export default function Home() {
         contractABI,
         signer
       );
-      coffeePortalContract.on("NewCoffee", onNewCoffee);
+      coffeePortalContract.on("NewOnchainPayment", onNewOnchainPayment);
     }
 
     return () => {
       if (coffeePortalContract) {
-        coffeePortalContract.off("NewCoffee", onNewCoffee);
+        coffeePortalContract.off("NewOnchainPayment", onNewOnchainPayment);
       }
     };
   }, []);
@@ -374,7 +376,7 @@ export default function Home() {
 
         {/* <!-- Content that showing in the box --> */}
         <div className="flex-auto">
-          <h1 className="text-md">Supporter: {coffee.name}</h1>
+          <h1 className="text-md">Amount: {ethers.utils.formatEther(coffee.amount)} ETH</h1>
           <h1 className="text-md">Message: {coffee.message}</h1>
           <h3>Address: {coffee.address}</h3>
           <h1 className="text-md font-bold">

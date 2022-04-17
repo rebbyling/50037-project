@@ -8,14 +8,14 @@ const main = async () => {
   
     const Token = await hre.ethers.getContractFactory("CustomCharityTest");
     const portal = await Token.deploy(
-        "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee",
-        "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee",
-        "name",
-        "charity"
+        "0xfC32dD65B0Db176d9555B9D961F1d7C54391694D",
+        "0xfC32dD65B0Db176d9555B9D961F1d7C54391694D",
+        "500372022D",
+        "char-charity"
     );
     await portal.deployed();
   
-    console.log("CoffeePortal address: ", portal.address);
+    console.log("Contract deployed at address: ", portal.address);
   };
   
   const runMain = async () => {

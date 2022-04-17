@@ -17,7 +17,8 @@ export default function Home() {
    */
 
   // need to change address
-  const contractAddress = "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee";
+  // const contractAddress = "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee";
+  const contractAddress = "0x781C51B9826c2aA90EFF27e86D259ca4068cc0Ea";
   const router = useRouter();
 
   /**
@@ -132,7 +133,7 @@ export default function Home() {
           signer
         );
 
-        let count = await CustomCharityTestContract.GetDonorDonations();
+        let count = await CustomCharityTestContract.GetNumOnlinePayments();
         console.log("Retrieved total coffee count...", count.toNumber());
 
 
@@ -143,7 +144,7 @@ export default function Home() {
          */
         const charityTxn = await CustomCharityTestContract.buyCoffee(
           message ? message : "Thank you for your kind generosity",
-          name ? name : "Anonymous",
+          //name ? name : "Anonymous",
           ethers.utils.parseEther("0.001"),
           {
             gasLimit: 300000,

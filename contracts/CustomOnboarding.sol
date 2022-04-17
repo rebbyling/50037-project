@@ -6,7 +6,7 @@ import "hardhat/console.sol"; // if we're still planning on using hardhat
 
 contract CustomOnboarding{
     address private admin;
-
+    mapping(address => bool) owners;
 
     /*
         If you're wondering why this has to be done like this, it's because of how Solidity handles mappings.
@@ -19,8 +19,9 @@ contract CustomOnboarding{
 
     mapping (string => Charity) private charities; // map UEN to charity STRUCT
 
-    constructor(address _admin) {
+    constructor(address _admin) payable {
         admin = _admin;
+        owners[_admin] = true;
     }
   
     modifier isAdmin {
@@ -40,7 +41,7 @@ contract CustomOnboarding{
     function OnboardCharity(address CharityAdmin, 
     address payable CharityAddress, 
     string memory UEN, 
-    string memory CharityName) public isAdmin{
+    string memory CharityName) public isOwners{
         address ContractAddress = address(new CustomCharityTest(CharityAdmin, CharityAddress, UEN, CharityName));
         emit ContractCreated(ContractAddress);
         charities[UEN].donationAddress = CharityAddress;
@@ -48,12 +49,12 @@ contract CustomOnboarding{
         charities[UEN].exists = true;
     }    
 
-    function UpdateCharityAddress(string memory UEN, address newAddress) public isAdmin{
+    function UpdateCharityAddress(string memory UEN, address newAddress) public isOwners{
         require(charities[UEN].exists == true, "This charity does not exist!");
         charities[UEN].donationAddress = newAddress;
     }
 
-    function RemoveCharity(string memory UEN) public isAdmin{
+    function RemoveCharity(string memory UEN) public isOwners{
         charities[UEN].exists = false;
         // Further work: Improve "child" smart contract transactions to FAIL if UEN no longer on the list
     }
@@ -66,5 +67,22 @@ contract CustomOnboarding{
     function getContractAddress(string memory UEN) public view returns (address){
         require(charities[UEN].contractAddress != address(0), "UEN does not exist!");
         return charities[UEN].contractAddress;
+    }
+        
+    modifier isOwners {
+    require(owners[msg.sender], "Only owners can access this function");
+      _;
+    }
+
+    function addOwner(address owner) public isAdmin {
+      owners[owner] = true;
+    }
+
+    function checkOwner(address owner) public view returns (bool) {
+      return owners[owner];
+    } 
+
+    function removeOwner(address owner) public isAdmin {
+      owners[owner] = false;
     }
 }

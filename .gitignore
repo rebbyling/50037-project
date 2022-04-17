@@ -9,3 +9,5 @@ cache
 artifacts
 package.json
 package-lock.json
+package-lock.json
+package.json

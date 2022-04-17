@@ -16,6 +16,7 @@ export default function Home() {
    * Create a variable here that holds the contract address after you deploy!
    */
   // const contractAddress = "0xF9Fa20f372Fe0CEDEAc3055ac59Fa104806c72Ee";
+  // REMEMBER TO UPDATE THIS
   const contractAddress = "0x781C51B9826c2aA90EFF27e86D259ca4068cc0Ea";
   const router = useRouter();
 
@@ -133,11 +134,9 @@ export default function Home() {
          */
         const coffeeTxn = await coffeePortalContract.MakeOnchainPayment(
           message ? message : "Take my money",
-          // name ? name : "Anonymous",
-          ethers.utils.parseEther("0.001"),
-          {
-            gasLimit: 300000,
-          }
+		  {
+		  value: ethers.utils.parseEther(name)
+		  }
         );
         console.log("Mining...", coffeeTxn.hash);
 
@@ -207,7 +206,7 @@ export default function Home() {
         const coffees = await coffeePortalContract.GetOnlinePayments();
 
         /*
-         * We only need address, timestamp, name, and message in our UI so let's
+         * We only need address, timestamp, value, and message in our UI so let's
          * pick those out
          */
         const coffeeCleaned = coffees.map((coffee) => {
@@ -239,14 +238,14 @@ export default function Home() {
     getAllCoffee();
     checkIfWalletIsConnected();
 
-    const onNewOnchainPayment = (from, timestamp, message, amount) => {
-      console.log("NewOnchainPayment", from, timestamp, message, amount);
+    const onNewOnchainPayment = ({from, message, timestamp, amount}) => {
+      console.log("NewOnchainPayment", from, message, timestamp, amount);
       setAllCoffee((prevState) => [
         ...prevState,
         {
           address: from,
-          timestamp: new Date(timestamp * 1000),
           message: message,
+		  timestamp: new Date(timestamp * 1000),
           amount: amount,
         },
       ]);
@@ -313,13 +312,13 @@ export default function Home() {
                   className="block text-indigo-700 text-md font-bold mb-2"
                   htmlFor="name"
                 >
-                  Name
+                  Donation amount (in ETH):
                 </label>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="name"
                   type="text"
-                  placeholder="Name"
+                  placeholder="Enter amount here"
                   onChange={handleOnNameChange}
                   required
                 />

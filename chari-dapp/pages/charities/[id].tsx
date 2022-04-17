@@ -245,7 +245,7 @@ export default function Home() {
         {
           address: from,
           message: message,
-		  timestamp: new Date(timestamp * 1000),
+		      timestamp: new Date(timestamp * 1000),
           amount: amount,
         },
       ]);
@@ -319,7 +319,8 @@ export default function Home() {
                   id="name"
                   type="text"
                   placeholder="Enter amount here"
-                  onChange={handleOnNameChange}
+                  onInput={handleOnNameChange}
+                  pattern="[0-9]*"
                   required
                 />
               </div>

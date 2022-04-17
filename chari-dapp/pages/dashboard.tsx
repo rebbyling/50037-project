@@ -303,7 +303,7 @@ export default function Home() {
           <div className="">
             </div>
             <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4 flex flex-col justify-between leading-normal">
-            <img src={product.img} className="object-cover h-48 w-full content-center" alt="" />
+            <img src={product.img} className="object-fill h-48 w-full content-center" alt="" />
                         <h3 className="text-xl font-serif text-indigo-800 mt-2">{ product.title }</h3>
                         <p className="text-md font-serif mb-5 text-slate-500">{ product.description }</p>
                         {/* <p className="text-lg font-serif">${ product.price }</p> */}

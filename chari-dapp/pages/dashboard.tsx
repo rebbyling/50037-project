@@ -294,16 +294,15 @@ export default function Home() {
         {/* <Link href="/">
           <h2>go to index</h2>
         </Link> */}
-           <div className="p-10">
+           <div className="p-10 grid lg:grid-cols-2 gap-4 ">
         {charities.map(product => {
                     return (
-                    <div key={`product-${product.id}`}>
+                    <div key={`product-${product.id}`} className="flex-initial w-full justify-center items-stretch self-stretch">
 
-            <div className="flex-initial w-full">
-          <div className="">
-            </div>
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4 flex flex-col justify-between leading-normal">
-            <img src={product.img} className="object-fill h-48 w-full content-center" alt="" />
+            <div className="flex-initial w-full justify-center items-stretch self-stretch">
+          
+            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 p-4 flex flex-col justify-between leading-normal items-stretch self-stretch">
+            <img src={product.img} className="object-contain h-48 w-full content-center" alt="" />
                         <h3 className="text-xl font-serif text-indigo-800 mt-2">{ product.title }</h3>
                         <p className="text-md font-serif mb-5 text-slate-500">{ product.description }</p>
                         {/* <p className="text-lg font-serif">${ product.price }</p> */}

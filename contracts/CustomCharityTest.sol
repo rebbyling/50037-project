@@ -10,8 +10,8 @@ contract CustomCharityTest{
     address payable public charityaddress; // Where the payments actually go to
     string public uen; // Charity's UEN, e.g. 12345678A
     string public charityname; // For display purposes
-    uint256 donationcount;
-    address[] donors; // List of all charity donors 
+    uint256 public donationcount;
+    address[] public donors; // List of all charity donors 
 
     // Table of all owners
     mapping(address => bool) owners;
@@ -38,14 +38,16 @@ contract CustomCharityTest{
     event NewOnchainPayment(
         address indexed from,
         string message,
-        uint256 timestamp
+        uint256 timestamp,
+        uint256 amount
+        // string name // omitted for the time being, privacy
     );
 
     struct OnchainPayment{
         address donor;
         string message;
         uint256 timestamp;
-        // string name; // omitted for the time being, privacy
+        uint256 amount; // WARNING: THIS IS IN WEI. Need to convert to ETH on presentation side.
     }
 
     OnchainPayment[] onchainPayment; // Stores all the donations in an unindexed list, just in-order
@@ -58,19 +60,20 @@ contract CustomCharityTest{
         // effects
         console.log("Making onchain transfer...");
 
+        require(msg.sender.balance >= msg.value, "You don't have enough ether for this!");
         donationcount += 1;
-        onchainPayment.push(OnchainPayment(msg.sender, _message, block.timestamp));
-        emit NewOnchainPayment(msg.sender, _message, block.timestamp);
+        onchainPayment.push(OnchainPayment(msg.sender, _message, block.timestamp, msg.value));
+        emit NewOnchainPayment(msg.sender, _message, block.timestamp, msg.value);
         uint size = donationCounts[msg.sender];
         if (size == 0){
             donors.push(msg.sender);
         }
         donationCounts[msg.sender] = size + 1;
 
-        // interacts - re-ordered to prevent re-entrance attacks
-        require(msg.sender.balance >= msg.value, "You don't have enough ether for this!");
+        // re-ordered to prevent re-entrance attacks
         (bool success, ) = charityaddress.call{value: msg.value}("");
         require(success, "Failed to send money");
+        console.log("Transaction complete");
     }
 
     // Helper functions
@@ -80,19 +83,19 @@ contract CustomCharityTest{
         return onchainPayment;
     }
 
+    function GetDonorDonations(address _address) public view returns (uint256){
+        // This returns the number of donations made by a single address. This does not account for the size of donations.
+        return donationCounts[_address];
+    }
+
     function GetNumOnlinePayments() public view returns (uint256){
-        // This returns the number of payments received in total.
+        // This returns the number of payments received in total. Legacy function.
         return donationcount;
     }
 
     function GetDonors() public view returns (address[] memory){
-        // This returns a list of all donors.
+        // This returns a list of all donors. Legacy function.
         return donors;
-    }
-
-    function GetDonorDonations(address _address) public view returns (uint256){
-        // This returns the number of donations made by a single address. This does not account for the size of donations.
-        return donationCounts[_address];
     }
 
     // Admin functions

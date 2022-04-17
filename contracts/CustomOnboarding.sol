@@ -12,11 +12,12 @@ contract CustomOnboarding{
         If you're wondering why this has to be done like this, it's because of how Solidity handles mappings.
     */
     struct Charity{
-        address cAddress;
+        address donationAddress;
+        address contractAddress;
         bool exists;
     }
 
-    mapping (string => Charity) private charities; // map UEN to charity address
+    mapping (string => Charity) private charities; // map UEN to charity STRUCT
 
     constructor(address _admin) {
         admin = _admin;
@@ -39,19 +40,31 @@ contract CustomOnboarding{
     function OnboardCharity(address CharityAdmin, 
     address payable CharityAddress, 
     string memory UEN, 
-    string memory CharityName) public isAdmin {
+    string memory CharityName) public isAdmin{
         address ContractAddress = address(new CustomCharityTest(CharityAdmin, CharityAddress, UEN, CharityName));
-        charities[UEN].cAddress = CharityAddress;
-        charities[UEN].exists = true;
         emit ContractCreated(ContractAddress);
+        charities[UEN].donationAddress = CharityAddress;
+        charities[UEN].contractAddress = ContractAddress;
+        charities[UEN].exists = true;
     }    
 
     function UpdateCharityAddress(string memory UEN, address newAddress) public isAdmin{
         require(charities[UEN].exists == true, "This charity does not exist!");
-        charities[UEN].cAddress = newAddress;
+        charities[UEN].donationAddress = newAddress;
+    }
+
+    function RemoveCharity(string memory UEN) public isAdmin{
+        charities[UEN].exists = false;
+        // Further work: Improve "child" smart contract transactions to FAIL if UEN no longer on the list
     }
 
     function getCharityAddress(string memory UEN) public view returns (address){
-        return charities[UEN].cAddress;
+        require(charities[UEN].donationAddress != address(0), "UEN does not exist!");
+        return charities[UEN].donationAddress;
+    }
+
+    function getContractAddress(string memory UEN) public view returns (address){
+        require(charities[UEN].contractAddress != address(0), "UEN does not exist!");
+        return charities[UEN].contractAddress;
     }
 }

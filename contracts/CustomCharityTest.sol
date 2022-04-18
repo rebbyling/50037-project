@@ -8,6 +8,7 @@ import "hardhat/console.sol"; // if we're still planning on using hardhat
 contract CustomCharityTest{
     address admin;  // Admin for the smart contract, could be admin of charity
     address payable public charityaddress; // Where the payments actually go to
+	address public creator; // new contract who dis
     string public uen; // Charity's UEN, e.g. 12345678A
     string public charityname; // For display purposes
     uint256 public donationcount;
@@ -27,6 +28,7 @@ contract CustomCharityTest{
         admin = _admin;
         charityaddress = _charityaddress;
         uen = _uen;
+		creator = msg.sender;
         charityname = _charityname;
         owners[_admin] = true;
         owners[_charityaddress] = true;

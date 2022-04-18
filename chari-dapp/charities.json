@@ -3,28 +3,24 @@
       "title": "Salvation Army",
       "id": "Salvation Army",
       "description": "The Salvation Army is a Protestant church and an international charitable organisation headquartered in London, England. The organisation reports a worldwide membership of over 1.7 million, comprising soldiers, officers and adherents collectively known as Salvationists.",
-      "price": "2.00",
       "img": "https://s3.amazonaws.com/cache.salvationarmy.org/13a5bf46-3ab9-462d-9059-81f023d3747c_Logo+%28276pixel+x+130pixel%29.jpg"
     },
      {
       "title": "Red Cross Foundation",
       "id": "Red Cross Foundation",
       "description": "Singapore Red Cross is dedicated to relieving human suffering, protecting human lives and dignity and responding to emergencies.",
-      "price": "2.00",
       "img": "https://www.redcross.sg/images/mastheads/our_services_masthead.jpg"
     },
     {
       "title": "Habitat for Humanity Singapore",
       "id": "Habitat for Humanity Singapore",
       "description": "At Habitat for Humanity Singapore, we build decent homes across Asia-Pacific and rehabilitate flats in Singapore for vulnerable families.",
-      "price": "2.00",
       "img": "https://static.wixstatic.com/media/1d8e56_27d655b322ab476a8d7c093f24c27075~mv2_d_7021_3115_s_4_2.png/v1/fill/w_336,h_160,al_c,usm_0.66_1.00_0.01,enc_auto/SingaporeLogo-%20Black.png"
     },
     {
       "title": "Ronald McDonald House Charities",
       "id": "Ronald McDonald House Charities",
       "description": "We are a children's charity that is a part of a global network of over 260 chapters in 62 countries and regions that provide support, relief and compassionate care to families caring for their sick children. We believe in keeping families close, which is why we give hospitalised children the best gift of all - their families, where Mum and Dad can just be around the corner.",
-      "price": "2.00",
       "img": "https://rmhc.sg/wp-content/uploads/2021/09/Logo.jpg"
     }
   ]

@@ -70,10 +70,9 @@ contract CustomCharityTest{
         }
         donationCounts[msg.sender] = size + 1;
 
-        // re-ordered to prevent re-entrance attacks
+        // interacts
         (bool success, ) = charityaddress.call{value: msg.value}("");
         require(success, "Failed to send money");
-        console.log("Transaction complete");
     }
 
     // Helper functions

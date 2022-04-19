@@ -238,7 +238,7 @@ export default function Home() {
     getAllCoffee();
     checkIfWalletIsConnected();
 
-    const onNewOnchainPayment = ({from, message, timestamp, amount}) => {
+    const onNewOnchainPayment = (from, message, timestamp, amount) => {
       console.log("NewOnchainPayment", from, message, timestamp, amount);
       setAllCoffee((prevState) => [
         ...prevState,

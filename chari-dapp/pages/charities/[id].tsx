@@ -201,7 +201,7 @@ export default function Home() {
         );
 
         /*
-         * Call the getAllCoffee method from your Smart Contract
+         * Call the getOnlinePayments method from your Smart Contract
          */
         const coffees = await coffeePortalContract.GetOnlinePayments();
 

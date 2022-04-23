@@ -9,8 +9,9 @@ As blockchain represents a transparent, decentralised platform, with fast transa
 
 ## Running the App:
 1. Install required dependencies using `npm install --save-dev hardhat`
-2. Run it on localhost:3000 using `npm run dev`
-3. If you wish to deploy the Smart Contract, run `npx hardhat run scripts/deploy.js --network ropsten`
+2. Navigate into the right directory `cd chari-dapp`
+3. Run it on localhost:3000 using `npm run dev`
+4. If you wish to deploy the Smart Contract, run `npx hardhat run scripts/deploy.js --network ropsten`
 
 ## How it works:
 Chari-DApp is very simple to use! You will only need to
